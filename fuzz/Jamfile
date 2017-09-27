@@ -1,0 +1,19 @@
+import feature : feature ;
+
+use-project /torrent : .. ;
+
+feature fuzz : off on : composite propagated link-incompatible ;
+feature.compose <fuzz>on : <cflags>-fsanitize=fuzzer <linkflags>-fsanitize=fuzzer ;
+
+project fuzz-tests
+	: requirements
+	<fuzz>on
+	<library>/torrent//torrent
+	: default-build
+	<link>static
+   ;
+
+test-suite fuzzing-tests :
+	[ run torrent_info.cpp ]
+	;
+
