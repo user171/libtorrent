@@ -145,7 +145,7 @@ script:
 
   - cd fuzz
   - 'if [ "$fuzz" == "1" ]; then
-      bjam link=static sanitize=undefined debug-symbols=on asserts=on
+      bjam link=static sanitize=undefined debug-symbols=on asserts=on;
     fi'
   - cd ..
 
