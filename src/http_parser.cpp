@@ -459,8 +459,9 @@ restart_response:
 		if (*chunk_size != 0)
 		{
 			*header_size = int(newline - buf.data());
-			// the newline alone is two bytes
-			TORRENT_ASSERT(newline - buf.data() > 2);
+			// the newline is at least 1 byte, and the length-prefix is at least 1
+			// byte
+			TORRENT_ASSERT(newline - buf.data() >= 2);
 			return true;
 		}
 
